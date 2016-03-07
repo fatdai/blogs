@@ -1,0 +1,56 @@
+* Emacs 包管理器
+** 使用 el-get 进行管理插件
+https://github.com/dimitri/el-get
+*** 安装方法:
+;; So the idea is that you copy/paste this code into your *scratch* buffer,
+;; hit C-j, and you have a working el-get.
+
+(url-retrieve
+
+ "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el"
+
+ (lambda (s)
+
+   (goto-char (point-max))
+
+   (eval-print-last-sexp)))
+*** 简单的设置
+在 .emacs 文件里面加入:
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil 'noerror)
+
+  (with-current-buffer
+
+      (url-retrieve-synchronously
+
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+
+    (goto-char (point-max))
+
+    (eval-print-last-sexp)))
+
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+
+(el-get 'sync)
+*** 基本使用
++ M-x el-get-install
++ M-x el-get-remove
++ M-x el-get-reinstall
++ M-x el-get-self-update
++ M-x el-get-update
++ M-x el-get-update-all
++ M-x el-get-list-packages 等,具体使用查看 el-get 的文档
+** 安装 cmake-mode
+M-x el-get-install cmake-mode
+** 安装 auto-complete
+M-x el-get-install auto-complete
+
+auto-complete插件说明:https://github.com/auto-complete/auto-complete
+*** 让 auto-complete 帮我们进行提示
+1. 在~/.emacs/el-get/auto-complete/dict/ 目录下创建一个cmake-mode文件 
+2. 在此文件中加入cmake的关键字即可 
+* 注意:
+让auto-complete进行提示需要 M-x auto-complete-mode
+
+

@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>emacs_study</title>
+<!-- 2016-03-08 Tue 03:06 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="dai" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">emacs_study</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Emacs 包管理器</a>
+<ul>
+<li><a href="#sec-1-1">1.1. 使用 el-get 进行管理插件</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1. 安装方法:</a></li>
+<li><a href="#sec-1-1-2">1.1.2. 简单的设置</a></li>
+<li><a href="#sec-1-1-3">1.1.3. 基本使用</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">1.2. 安装 cmake-mode</a></li>
+<li><a href="#sec-1-3">1.3. 安装 auto-complete</a>
+<ul>
+<li><a href="#sec-1-3-1">1.3.1. 让 auto-complete 帮我们进行提示</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-2">2. 注意:</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Emacs 包管理器</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 使用 el-get 进行管理插件</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+<a href="https://github.com/dimitri/el-get">https://github.com/dimitri/el-get</a>
+</p>
+</div>
+<div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> 安装方法:</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+;; So the idea is that you copy/paste this code into your <b>scratch</b> buffer,
+;; hit C-j, and you have a working el-get.
+</p>
+
+<p>
+(url-retrieve
+</p>
+
+<p>
+"<a href="https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el">https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el</a>"
+</p>
+
+<p>
+(lambda (s)
+</p>
+
+<p>
+(goto-char (point-max))
+</p>
+
+<p>
+(eval-print-last-sexp)))
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> 简单的设置</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+在 .emacs 文件里面加入:
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+</p>
+
+<p>
+(unless (require 'el-get nil 'noerror)
+</p>
+
+<p>
+(with-current-buffer
+</p>
+
+<p>
+(url-retrieve-synchronously
+</p>
+
+<p>
+"<a href="https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el">https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el</a>")
+</p>
+
+<p>
+(goto-char (point-max))
+</p>
+
+<p>
+(eval-print-last-sexp)))
+</p>
+
+<p>
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+</p>
+
+<p>
+(el-get 'sync)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> 基本使用</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<ul class="org-ul">
+<li>M-x el-get-install
+</li>
+<li>M-x el-get-remove
+</li>
+<li>M-x el-get-reinstall
+</li>
+<li>M-x el-get-self-update
+</li>
+<li>M-x el-get-update
+</li>
+<li>M-x el-get-update-all
+</li>
+<li>M-x el-get-list-packages 等,具体使用查看 el-get 的文档
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 安装 cmake-mode</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+M-x el-get-install cmake-mode
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> 安装 auto-complete</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+M-x el-get-install auto-complete
+</p>
+
+<p>
+auto-complete插件说明:<a href="https://github.com/auto-complete/auto-complete">https://github.com/auto-complete/auto-complete</a>
+</p>
+</div>
+<div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1"><span class="section-number-4">1.3.1</span> 让 auto-complete 帮我们进行提示</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<ol class="org-ol">
+<li>在~/.emacs/el-get/auto-complete/dict/ 目录下创建一个cmake-mode文件 
+</li>
+<li>在此文件中加入cmake的关键字即可 
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 注意:</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+让auto-complete进行提示需要 M-x auto-complete-mode
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: dai</p>
+<p class="date">Created: 2016-03-08 Tue 03:06</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
