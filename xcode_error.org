@@ -1,0 +1,38 @@
+* Xcode 常见错误
+** The identity used to sign the executable is no longer valid.
+Please verify that your device’s clock is properly set, and that your
+signing certificate is not expired.
+*** 解决方式
++ Xcode->Prefences->Accounts->View Detail-> press Refresh Button
++ Build Settings->Code Signing Identity 换一个identity
+** IAP 出现 "无法链接到 itunes store" 错误
+*** 解决方式
+1. 得到更准确错误,加入代码:
+#+BEGIN_SRC objective-c
+switch (transaction.error.code) {
+        case SKErrorUnknown:
+            NSLog(@"SKErrorUnknown");
+            break;
+        case SKErrorClientInvalid:
+            NSLog(@"SKErrorClientInvalid");
+            break;
+        case SKErrorPaymentCancelled:
+            NSLog(@"SKErrorPaymentCancelled");
+            break;
+        case SKErrorPaymentInvalid:
+            NSLog(@"SKErrorPaymentInvalid");
+            break;
+        case SKErrorPaymentNotAllowed:
+            NSLog(@"SKErrorPaymentNotAllowed");
+            break;
+        default:
+            NSLog(@"No Match Found for error");
+            break;
+    }
+    NSLog(@"transaction.error.code %@",[transaction.error description]);
+
+#+END_SRC
+ 2. 得到的输出如果是 SKErrorDomain,到 General->Build 里面填上一个数字
+    即可
+
+

@@ -10,7 +10,15 @@
 (tool-bar-mode 0)      ;; 隐藏工具栏
 ;;(scroll-bar-mode 0)    ;; 隐藏滚动条
 
+
+;;;;;;;; org-mode ;;;;;;;;;;;;;;;
 (setq org-startup-indented t) ;; 打开org文件默认都indent,切换的命令为 M-x org-indent-mode
+
+;; org模式下默认没有自动换行
+(add-hook 'org-mode-hook (lambda()(setq truncate-lines nil))) 
+
+
+
 
 ;;;;;;;;; el-get start;;;;;;;;;;;;;;;;;;;;
 ;; 具体查看: https://github.com/dimitri/el-get
@@ -34,3 +42,6 @@
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 (el-get 'sync)
 ;;;;;;;;; el-get end;;;;;;;;;;;;;;;;;;;;
+
+
+

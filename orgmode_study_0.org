@@ -93,6 +93,14 @@ Important actors in this film are:
 - Elijah Wood :: He plays Frodo
 - Sean Austin :: He plays Sam, Frodo’s friend.
 
+** 插入代码命令
+只需要输入 <s 然后按Tab键,后面填写语言,比如 java c++ c等
+
+** 关于带 checkbox 的列表
+
+** 待办事项(TODO)
+
+
 * 可以导出其他格式
 支持html,pdf等格式
 ** 导出命令
