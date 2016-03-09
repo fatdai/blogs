@@ -1,0 +1,7 @@
+* 我安装的插件
++ el-get
++ auto-complete
++ autopair
++ cmake-mode
++ highlight-parentheses
++ color-theme
