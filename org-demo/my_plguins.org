@@ -1,0 +1,12 @@
+* 我所使用的插件及其使用方式
+** el-get
+*** 
+** ace-jump-mode
+** auto-complete
+** autopair
+** cmake-mode
+** color-theme
+** helm
+** highlight-parentheses
+** smex
+** yasnippet
