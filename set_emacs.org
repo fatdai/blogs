@@ -1,6 +1,6 @@
 * 将电脑A上的 emacs 环境 移动到电脑B上
-1. 在电脑A上的 Emacs 里面输入 M-x ielm,
-2. 输入
+** 在电脑A上的 Emacs 里面输入 M-x ielm.
+** 输入
 #+BEGIN_SRC elisp
 `(setq my-packages
               ',(mapcar #'el-get-as-symbol
@@ -12,7 +12,7 @@
 (setq my-packages
       '(auto-complete autopair cl-lib cmake-mode color-theme dash el-get epl fuzzy highlight-parentheses let-alist package pkg-info popup seq))
 #+END_SRC
-3. 在电脑B上 先安装 el-get,安装方法参
+** 在电脑B上 先安装 el-get,安装方法参
    见:https://github.com/dimitri/el-get
    最简单的安装方式是 新建一个.emcas,在里面输入:
 #+BEGIN_SRC 
@@ -29,10 +29,10 @@
 (el-get 'sync)
 #+END_SRC
 保存后退出,再次打开就会自动安装el-get
-4. 安装完el-get后,然后在一个buffer里面输入上面记录下的那句,C-x C-e执行,
+** 安装完el-get后,然后在一个buffer里面输入上面记录下的那句,C-x C-e执行,
 再输入下面这句,
 #+BEGIN_SRC elisp
 (el-get 'sync my-packages)
 #+END_SRC 
 C-x C-e 执行,等待安装.
- 5. 然后将电脑A里面的.emacs复制到电脑B上即可.
+** 然后将电脑A里面的.emacs复制到电脑B上即可.
