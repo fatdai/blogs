@@ -10,7 +10,7 @@
 例如:
 #+BEGIN_SRC elisp
 (setq my-packages
-      '(auto-complete autopair cl-lib cmake-mode color-theme dash el-get epl fuzzy highlight-parentheses let-alist package pkg-info popup seq))
+      '(ace-isearch ace-jump-mode auto-complete auto-complete-clang autopair avy bar-cursor cl-lib cmake-mode color-theme dash el-get epl fuzzy helm helm-swoop highlight-parentheses let-alist package pkg-info popup seq smex window-numbering yasnippet))
 #+END_SRC
 ** 在电脑B上 先安装 el-get,安装方法参
    见:https://github.com/dimitri/el-get

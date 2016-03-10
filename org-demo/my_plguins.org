@@ -1,12 +1,76 @@
 * 我所使用的插件及其使用方式
+** 我的常规配置
++ 具体查看 .emacs 文件
 ** el-get
-*** 
+***  主要进行管理插件
+| 命令               | 描述 |
+|--------------------+------|
+| M-x el-get-install | 安装 |
+|--------------------+------|
+| M-x el-get-remove  | 删除   |
+|--------------------+--------|
+其他的用法见:https://github.com/dimitri/el-get
+*** 在 .emacs 里面的配置
+#+BEGIN_SRC elisp
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+(el-get 'sync)
+#+END_SRC
 ** ace-jump-mode
+*** 主要快速的移动到指定的位置
+M-x ace-jump-mode,我绑定到 C-c Space
+不过好像在 *Org-mode*下快捷键 无效.
+*** 在 .emacs 里面的配置
+#+BEGIN_SRC elisp
+;; 绑定到快捷键 C-c Space
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+#+END_SRC
 ** auto-complete
+*** 进行自动补全
++ M-p/n 进行上下选择
++ Tab/Return 选择当前的
 ** autopair
+*** 进行自动括号匹配
+*** 在 .emacs 里面的配置
+#+BEGIN_SRC elisp
+(autopair-global-mode)
+#+END_SRC
+设置成全局的
 ** cmake-mode
 ** color-theme
+*** 在 .emacs 里面的配置
+#+BEGIN_SRC elisp
+(color-theme-initialize)
+(color-theme-gnome2)
+#+END_SRC
+使用 gnome2 的外观
 ** helm
+*** 快速找到文件和命令
+*** 在 .emacs 里面设置成全局
+#+BEGIN_SRC elisp
+(helm-mode 1)
+#+END_SRC
 ** highlight-parentheses
+*** 方便查看匹配的括号
 ** smex
+*** 更好的 M-x
+*** 在 .emacs 里面的配置
+#+BEGIN_SRC elisp
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+#+END_SRC
 ** yasnippet
+*** 在 .emacs 里面设置成全局的
+#+BEGIN_SRC elisp
+(yas-global-mode 1)
+#+END_SRC
