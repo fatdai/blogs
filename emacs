@@ -264,3 +264,41 @@
 (my-ac-config)    
 (ac-config-default)  
 ;; 结束  
+
+
+;;;;; 是否需要设置环境变量???
+(setq exec-path (append '("/usr/local/bin") exec-path))
+
+;;;;; winner-mode
+;;; winner-undo   C-c left
+;;; winner-redo   C-c right
+(winner-mode)
+
+;; ;;;;;;;;;;; tabbar
+;; (require 'tabbar)
+;; (tabbar-mode)
+;; (define-prefix-command 'lwindow-map)
+;; (global-set-key (kbd "<M-up>") 'tabbar-backward-group)
+;; (global-set-key (kbd "<M-down>") 'tabbar-forward-group)
+;; (global-set-key (kbd "<M-left>") 'tabbar-backward)
+;; (global-set-key (kbd "<M-right>") 'tabbar-forward)
+
+
+;;;; cscope
+;; (require 'xcscope)
+;; (add-hook 'c++-mode-hook '(lambda() (require 'xcscope)))
+;; (define-key global-map [(control f3)]  'cscope-set-initial-directory)
+;; (define-key global-map [(control f4)]  'cscope-unset-initial-directory)
+;; (define-key global-map [(control f5)]  'cscope-find-this-symbol)
+;; (define-key global-map [(control f6)]  'cscope-find-global-definition)
+;; (define-key global-map [(control f7)]  'cscope-find-global-definition-no-prompting)
+;; (define-key global-map [(control f8)]  'cscope-pop-mark)
+;; (define-key global-map [(control f9)]  'cscope-next-symbol)
+;; (define-key global-map [(control f10)] 'cscope-next-file)
+;; (define-key global-map [(control f11)] 'cscope-prev-symbol)
+;; (define-key global-map [(control f12)] 'cscope-prev-file)
+;; (define-key global-map [(meta f9)]     'cscope-display-buffer)
+;; (define-key global-map [(meta f10)]    'cscope-display-buffer-toggle)
+
+
+
