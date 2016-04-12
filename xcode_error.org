@@ -35,4 +35,13 @@ switch (transaction.error.code) {
  2. 得到的输出如果是 SKErrorDomain,到 General->Build 里面填上一个数字
     即可
 
-
+    
+** cocos2dx 2.2 出现 
+ld: warning: directory not found for option '-L"/Users/mac/work/cocos2d-x-2.2/projects/pic41_ios/proj.ios/../../../cocos2dx/platform/third_party/ios/libraries"'
+ld: warning: directory not found for option '-L"/Users/mac/work/cocos2d-x-2.2/projects/pic41_ios/proj.ios/../../../external/libwebsockets/ios/lib"'
+ld: warning: directory not found for option '-L/Users/user/work/cocos2dx/cocos2d-x-2.2/projects/pic41_ios/proj.ios/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library'
+ld: warning: directory not found for option '-L/Users/user/work/cocos2dx/cocos2d-x-2.2/projects/pic41_ios/proj.ios'
+ld: library not found for -lcurl
+clang: error: linker command failed with exit code 1 (use -v to see
+invocation)
+*** 检查Library Search Paths.  

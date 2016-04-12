@@ -1,0 +1,29 @@
+
+;; ----- smex-history -----
+(
+ downcase-word-or-region
+ dosomething-region
+ xah-select-inside-quotes
+ my-select-line
+ my-check-region
+ company-mode
+ el-get-install
+)
+
+;; ----- smex-data -----
+(
+ (el-get-install . 7)
+ (el-get-remove . 1)
+ (customize-themes . 1)
+ (load-theme . 2)
+ (revert-buffer . 1)
+ (reveal-mode . 1)
+ (recover-file . 7)
+ (ielm . 1)
+ (company-mode . 1)
+ (my-check-region . 2)
+ (my-select-line . 1)
+ (xah-select-inside-quotes . 1)
+ (dosomething-region . 1)
+ (downcase-word-or-region . 1)
+)
