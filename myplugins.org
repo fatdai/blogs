@@ -1,0 +1,313 @@
+* 我安装和配置了的插件
+** exec-path-from-shell
+*** 作用
+解决在emacs里面执行shell命令经常找不到.原因是没指明我使用的zsh
+*** 配置
+#+BEGIN_SRC elisp
+(let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
+  (setenv "PATH" path)
+  (setq exec-path 
+        (append
+         (split-string-and-unquote path ":")
+         exec-path)))
+#+END_SRC
+*** 用法
+具体参见 https://github.com/purcell/exec-path-from-shell
+** helm
+*** 作用
+各种让你方便
+*** 配置
+#+BEGIN_SRC elisp
+;;;; Helm 全局有效
+(require 'helm)
+(require 'helm-config)
+
+;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-unset-key (kbd "C-x c"))
+
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
+(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
+(when (executable-find "curl")
+  (setq helm-google-suggest-use-curl-p t))
+
+(setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+      helm-ff-file-name-history-use-recentf t)
+
+(helm-mode 1)
+#+END_SRC
+*** 用法
++ helm-buffer-list 列出所有的buffer
++ helm-find-files 寻找文件
++ 还有很多用法,具体参见 https://github.com/emacs-helm/helm
+** highlight-parentness
+*** 作用
+就是好区分括号
+*** 配置
+#+BEGIN_SRC elisp
+(require 'highlight-parentheses)
+#+END_SRC
+** smex
+*** 作用
+让人不用记多少命令
+*** 配置
+#+BEGIN_SRC elisp
+;;;;; smex 插件
+;;; 使用 C-s/C-r切换 Return 确定
+(require 'smex)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+#+END_SRC
+*** 用法
+具体参见 https://github.com/nonsequitur/smex
+** window-numbering
+*** 作用
+给window进行编号,方便跳转
+*** 配置
+#+BEGIN_SRC elisp
+;;;; window-numbering 全局有效,使用M-1 M-2 ... 导航窗口
+(require 'window-numbering )
+(window-numbering-mode)
+#+END_SRC
+*** 用法
+具体见 https://github.com/nschum/window-numbering.el
+** auto-pair
+*** 作用
+自动配对广告
+*** 配置
+#+BEGIN_SRC elisp
+;;;; 全局有效
+(require 'autopair)
+(autopair-global-mode)
+#+END_SRC
+*** 用法
+具体参见 https://github.com/capitaomorte/autopair
+** bar-cursor
+*** 作用
+将块撞的光标变成竖线
+*** 配置
+#+BEGIN_SRC elisp
+(require 'bar-cursor)
+(bar-cursor-mode)
+#+END_SRC
+** cedet
+*** 作用
+emacs c/c++一个开发环境
+*** 配置
+#+BEGIN_SRC elisp
+;;============================================================
+;; cedet
+;;============================================================
+(require 'cc-mode)
+(require 'semantic)
+(global-semanticdb-minor-mode 1)
+(global-semantic-idle-scheduler-mode 1)
+(semantic-mode 1)
+(semantic-add-system-include "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/")
+(semantic-add-system-include "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/usr/include/")
+#+END_SRC
+*** 用法
+**** TODO 具体怎么用?
+**** TODO 只作为依赖?
+** cmake-mode
+*** 作用
+方便编写 cmake
+*** 配置
+#+BEGIN_SRC elisp
+(require 'cmake-mode)
+(setq auto-mode-alist
+      (append '(("CMakeLists\\.txt\\'" . cmake-mode)
+		("\\.cmake\\'" . cmake-mode))
+	      auto-mode-alist))
+#+END_SRC
+*** 用法
+具体参见 https://github.com/roysc/cmake-mode
+** color-theme
+*** 作用
+好看的主题
+*** 配置
+#+BEGIN_SRC elisp
+(require 'color-theme )
+(color-theme-initialize)
+(color-theme-gnome2)
+#+END_SRC
+*** 用法
+M-x color-theme... 自己选择
+具体参见:
+** ace-jump-mode
+*** 作用
+在屏幕里迅速移动到像到达的位置
+*** 配置
+#+BEGIN_SRC elisp
+;; 绑定到快捷键 C-c Space
+(require 'ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+(define-key global-map (kbd "C-c l") 'ace-jump-line-mode)
+(define-key global-map (kbd "C-c b") 'ace-jump-mode-pop-mark)
+#+END_SRC
+*** 用法
++ ace-jump-mode 根据字符跳转
++ ace-jump-line-mode 快速跳到行
++ ace-jump-mode-pop-mark 返回到上一个位置
++ 具体 https://github.com/winterTTr/ace-jump-mode
+** company-c-headers
+*** 作用
+补全c/c++头文件
+*** 配置
+IMPORTANT: If you want to complete C++ header files, you have to add its paths since by default company-c-headers only includes these two system include paths: /usr/include/ and /usr/local/include/. To enable C++ header completion for standard libraries, you have to add its path, for example, like this:
+#+BEGIN_SRC elisp
+(setq company-c-headers-path-system '("/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/" 
+				      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/usr/include/"))
+ 
+#+END_SRC
+这样就可以找到 c++ 头文件
+*** 用法
++ company-c-headers-path-system 指定系统头文件路径
++ company-c-headers-path-user 指定用户自定义的头文件路径
++ 具体见 https://github.com/randomphrase/company-c-headers
+
+** company-mode
+*** 作用
+进行补全
+*** 配置
+#+BEGIN_SRC elisp
+;; company-mode
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+;; source code completion using clang
+;; we have to delete company-semantic, otherwise company-complete will use company-semantic instead of company-clang, because it has higher precedence in company-backends. company-semantic will be discuss in the CEDET section.
+
+(setq company-backends (delete 'company-semantic company-backends))
+(define-key c-mode-map  [(tab)] 'company-complete)
+(define-key c++-mode-map  [(tab)] 'company-complete)
+#+END_SRC
+*** 用法
+具体见:https://github.com/company-mode/company-mode
+** sr-speedbar
+*** 作用
+显示一个类似文件夹的东西
+*** 配置
+ 不需要配置
+*** 用法
+**** TODO  如何让窗口显示在左边?
+**** Cmd-s 进行打开/关闭
+ 具体见 https://github.com/emacsmirror/sr-speedbar
+** function-args
+*** 作用
++ showing an inline arguments hint for the C/C++ function at point
+*** 配置
+#+BEGIN_SRC elisp
+(require 'function-args)
+(fa-config-default)
+
+;; Put c++-mode as default for *.h files (improves parsing):
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+;; Enable case-insensitive searching:
+(set-default 'semantic-case-fold t)
+
+;; echo "" | g++ -v -x c++ -E -  获取头文件
+(semantic-add-system-include "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/" 'c++-mode)
+(semantic-add-system-include "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/usr/include/" 'c++-mode)
+
+;;You can add this to improve the parse of macro-heavy code:
+(require 'semantic/bovine/c)
+(add-to-list 'semantic-lex-c-preprocessor-symbol-file "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/usr/include/stddef.h")
+#+END_SRC
+*** 用法
++ fa-show 查看函数原型,好像只能查看C语言函数. M-u dismiss hint.
++ fa-jump 如果显示 fa-show 的提示, fa-jump 就可以跳过去
++ 还有好几个命令好像很牛b,具体参见 https://github.com/abo-abo/function-args
+
+** ggtags(要求先安装gnu global,brew install global)
+*** 作用
+生成 TAGS 相关文件,方便查找 函数 变量 等.
+阅读代码的利器.
+*** 配置
+#+BEGIN_SRC elisp
+(require 'ggtags)
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
+              (ggtags-mode 1))))
+
+#+END_SRC
+*** 用法
+**** 使用之前需要安装 gnu global
++ 下载gnu global源码,然后进行编译:
+#+BEGIN_SRC shell
+./configure --prefix=<DIR> --with-exuberant-ctags=/usr/local/bin/ctags
+make && make install
+#+END_SRC
+**** 具体使用
++ M-.  ggtags-find-tag-dwim,可以跳转到函数定义的地方
++ M-,  pop-tag-mark,可以返回到刚才跳转的位置
++ ggtags-find-reference  查找引用 
++ ggtags-find-other-symbol  查找在其他地方的使用
++ ggtags-find-definition 查找定义
++ ggtags-find-file 查找文件
++ ggtags-prev-mark ring里面的前一个
++ ggtags-next-mark ring里面的后一个
++ ggtags-view-tag-history 查看历史
++ ggtags-toggle-project-read-only 打开/关闭只读
++ 具体参见 https://github.com/leoliu/ggtags
+** projectile
+*** 作用
+管理工程
++ jump to a file in project
++ jump to files at point in project
++ jump to a directory in project
++ jump to a file in a directory
++ jump to a project buffer
++ jump to a test in project
++ toggle between files with same names but different extensions (e.g. .h <-> .c/.cpp, Gemfile <-> Gemfile.lock)
++ toggle between code and its test (e.g. main.service.js <-> main.service.spec.js)
++ jump to recently visited files in the project
++ switch between projects you have worked on
++ kill all project buffers
++ replace in project
++ multi-occur in project buffers
++ grep in project
++ regenerate project etags or gtags (requires ggtags).
++ visit project in dired
++ run make in a project with a single key chord
+*** 配置 
+(projectile-global-mode)
+*** 用法
+Prefix key of Projectile is C-c p. Some notable features:
++ C-c p a 切换.h/.cpp
++ Jump to any file in the project: C-c p f.
++ Jump to any directory in the project: C-c p d.
++ List buffers local to current project: C-c p b.
++ Jump to recently visited files in project: C-c p e.
++ Grep in project: C-c p g s
++ Multi-occur in project buffers: C-c p o.
++ Simple refactoring with text replace in current project: C-c p r.
++ Switch visited projects (visited once an Projectile remembers): C-c p p.
++ C-c p C-h 查看命令
++ 具体参见 http://tuhdo.github.io/c-ide.html
+** yasnippet
+*** 作用
+代码模板,还可以帮助补全
+*** 配置
+#+BEGIN_SRC elisp
+;;;;yasnippets
+(require 'yasnippet )
+(yas-global-mode 1)
+#+END_SRC
+*** 用法
+**** TODO 主要需要学会添加自己的模板
+**** 具体参见 https://github.com/capitaomorte/yasnippet
+** TODO 等待需要解决的问题
+1. 如何让窗口显示在左边？
+2. minibuf里面如何重复执行上一条的命令?
+3. ecb 如何使用?
+4. 整理 .emacs,特别是环境变量

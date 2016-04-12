@@ -1,11 +1,12 @@
 * Emacs 下阅读C/C++代码
 ** 安装 cscope
-1. brew install cscope,是否需要在 .emacs里面添加 
++ brew install cscope,需要在 .emacs里面添加 cscope 路径
 #+BEGIN_SRC elisp
 (setq exec-path (append '("/usr/local/bin") exec-path))
 #+END_SRC
-2. 如果所有源代码及其子目录全部在同一个目录下面,只需要执行
-C-c s I(cscope-index-files)就可以生成cscope数据了了.
-+ 是否需要 cscope-index 文件?
-+ 是否需要使用cscope -Rbkq 创建索引?
++ 如果所有源代码及其子目录全部在同一个目录下面,只需要执行
+C-c s I (cscope-index-files) 就可以生成 cscope.files
++ 再使用 cscope -Rbkq 创建索引 cscope.out cscope.in.out cscope.po.out
+  具体参数查询 cscope 文档
++ 好像不需要 cscope-index 文件.
 
