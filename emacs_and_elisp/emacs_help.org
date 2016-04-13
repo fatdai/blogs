@@ -1,0 +1,10 @@
+* Emacs 入门
+** 查看简单的帮助
+1. C-h f  ;;查看函数的文档 (describe-function)
+2. C-h k  ;;查看某个快捷键对应的命令 (describe-key)
+3. C-h w  ;;查看某个命令对应的快捷键 (where-is)
+4. C-h m  ;;查看某个mode的文档
+** 执行elisp代码
++ 在语句后面C-x C-e (eval-last-sexp)执行 上一条命令
++ M-x eval-buffer 可以执行当前buffer内的elisp代码
++ 选中一个 region 后,M-x eval-region 可以执行这个region内的代码

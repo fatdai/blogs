@@ -1,0 +1,9 @@
+* Emacs 下列编辑模式常用命令
+1. 先mark一个区域,要求起始位置和终止位置不在用一列
+2. 后续可选操作
+   + C-x r k  ;;剪切选中的列  kill-rectangle
+   + C-x r o  ;;在选中区域的插入空格  open-rectangle
+   + C-x r t  ;;将选中的区域替换为某个字符串  string-rectangle
+   + C-x r y  ;;粘贴通过 C-x r k 剪切的区域
+   + C-x r c  ;;清除选中的区域
+* 可以参考 http://ergoemacs.org/emacs/emacs_string-rectangle_ascii-art.html 
